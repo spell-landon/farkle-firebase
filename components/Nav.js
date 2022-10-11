@@ -6,7 +6,6 @@ import Image from 'next/image';
 
 export const Nav = () => {
   const [user, loading] = useAuthState(auth);
-  console.log(user);
   return (
     <nav className='py-4 px-4 flex justify-between items-center align-middle bg-gray-200 dark:bg-gray-800'>
       <Link href={'/'}>Farkle ScoreKeeper</Link>

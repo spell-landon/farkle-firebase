@@ -1,7 +1,12 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { stringify } from 'postcss';
+import { useEffect, useState } from 'react';
+import { usePlayersContext } from '../utils/playerReducer';
 
 export default function Home() {
+  const [players, setPlayers] = usePlayersContext();
+  console.log('Index: ', players);
   return (
     <div>
       <Head>
@@ -15,6 +20,13 @@ export default function Home() {
         <Link href={'/add-users'}>
           <a>Add new users here</a>
         </Link>
+        <span>Current Players:</span>
+        <ul>
+          {players &&
+            players.map((player, index) => {
+              return <li key={index}>{player.firstName}</li>;
+            })}
+        </ul>
       </main>
     </div>
   );

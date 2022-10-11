@@ -20,7 +20,6 @@ const Login = () => {
   const GoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
-      console.log(result.user);
       route.push('/dashboard');
     } catch (error) {
       console.log(error);
@@ -32,14 +31,12 @@ const Login = () => {
   const FacebookLogin = async () => {
     try {
       const result = await signInWithPopup(auth, fbProvider);
-      console.log('Result: ', result);
       const credential = await FacebookAuthProvider.credentialFromResult(
         result
       );
       const token = credential.accessToken;
       let photoURL = result.user.photoURL + '?height=500&access_token=' + token;
       await updateProfile(auth.currentUser, { photoURL: photoURL });
-      console.log(result);
       route.push('/dashboard');
     } catch (error) {
       console.log(error);
