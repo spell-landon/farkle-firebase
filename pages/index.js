@@ -3,10 +3,19 @@ import Link from 'next/link';
 import { stringify } from 'postcss';
 import { useEffect, useState } from 'react';
 import { usePlayersContext } from '../utils/playerReducer';
+import { Button } from '../components/elements/Button';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 export default function Home() {
   const [players, setPlayers] = usePlayersContext();
   console.log('Index: ', players);
+  const router = useRouter();
+
+  const handleQuickStart = () => {
+    router.push('/start-new-game');
+  };
+
   return (
     <div>
       <Head>
@@ -15,8 +24,8 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main>
-        <h2>Welcome to Farkle ScoreKeeper</h2>
+      <div className='flex flex-col justify-start items-center'>
+        {/* <h2>Welcome to Farkle ScoreKeeper</h2>
         <Link href={'/add-users'}>
           <a>Add new users here</a>
         </Link>
@@ -26,8 +35,20 @@ export default function Home() {
             players.map((player, index) => {
               return <li key={index}>{player.firstName}</li>;
             })}
-        </ul>
-      </main>
+        </ul> */}
+        {/* Image */}
+        <Image src='/assets/dice.png' alt='Dice' width={500} height={500} />
+        {/* <img src={`../assets/dice.png`} alt='main' className='h-40 w-40' /> */}
+        <h1 className='text-3xl font-bold'>Farkle Scorekeeper</h1>
+        <span className='mt-4 text-center '>
+          Quick start without saving a game, or login to save games or start
+          from a save point.
+        </span>
+        <div className='flex flex-col gap-4 mt-auto w-full fixed bottom-20 px-4'>
+          <Button onClick={handleQuickStart}>Quick Start</Button>
+          <Button to={'/auth/login'}>Login</Button>
+        </div>
+      </div>
     </div>
   );
 }

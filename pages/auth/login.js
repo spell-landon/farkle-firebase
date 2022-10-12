@@ -50,23 +50,31 @@ const Login = () => {
   }, [user]);
 
   return (
-    <div className='py-8 px-6 w-full max-w-lg mx-auto shadow-xl rounded-lg flex flex-col gap-4'>
+    <div className='py-12 px-6 w-full max-w-lg mx-auto shadow-xl rounded-lg flex flex-col gap-4 my-auto backdrop-blur bg-white/20'>
       <h2 className='text-3xl font-medium'>Join today!</h2>
       <div>
         <h3>Sign in with one of the providers!</h3>
       </div>
-      <div className='flex flex-col gap-2'>
+      <div className='flex flex-col gap-4 my-4'>
         <button
-          className='flex items-center py-3 px-2 border gap-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-white'
+          className='flex items-center py-3 px-2 gap-2 rounded-lg bg-white text-gray-900'
           onClick={GoogleLogin}>
           <FcGoogle className='text-2xl' />
           Sign in with Google
         </button>
         <button
-          className='flex items-center py-3 px-2 border gap-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-white'
+          className='flex items-center py-3 px-2 gap-2 rounded-lg bg-white text-gray-900'
           onClick={FacebookLogin}>
           <AiFillFacebook className='text-2xl text-blue-400' />
           Sign in with Facebook
+        </button>
+      </div>
+      <div className='w-full h-[2px] bg-black/10'></div>
+      <div className='flex flex-col mt-4'>
+        <button
+          className='flex items-center justify-center py-3 px-2 gap-2 rounded-lg bg-white text-gray-900'
+          onClick={() => console.log('Create New Account')}>
+          Create New Account
         </button>
       </div>
     </div>

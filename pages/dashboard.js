@@ -8,6 +8,12 @@ const Dashboard = () => {
   const [user, loading] = useAuthState(auth);
   const { theme, setTheme } = useTheme();
   const route = useRouter();
+
+  const signOut = () => {
+    auth.signOut();
+    route.push('/');
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -15,10 +21,16 @@ const Dashboard = () => {
     route.push('/auth/login');
   } else {
     return (
-      <div className='space-y-4'>
-        <h1>Welcome to your dashboard {user?.displayName}</h1>
+      <div className='space-y-4 w-full'>
+        <div className='w-full flex justify-between items-center'>
+          <h1 className='text-3xl font-semibold'>{user?.displayName}</h1>
+          <button
+            onClick={signOut}
+            className='border border-white px-3 py-2 rounded-md'>
+            Sign Out
+          </button>
+        </div>
         <div className='flex justify-between items-center'>
-          <button onClick={() => auth.signOut()}>Sign Out</button>
           <button
             aria-label='Toggle Dark Mode'
             type='button'
