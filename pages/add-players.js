@@ -4,21 +4,7 @@ import ColorPicker from '../components/ColorPicker';
 import { Button } from '../components/elements/Button';
 
 const AddPlayers = () => {
-  // const [newColor, setNewColor] = useState(null);
-  const [playerColor, setPlayerColor] = useState({
-    name: 'Pink',
-    bgColor: 'bg-pink-500',
-    selectedColor: 'ring-pink-500',
-  });
-
-  // if (typeof window !== 'undefined') {
-  //   setNewColor(JSON.parse(window.localStorage.getItem('addPlayerColor')));
-  // }
-  // const getNewColor = useCallback(() => {
-  //   setPlayerColor(newColor);
-  // }, [newColor]);
-
-  // getNewColor();
+  const [playerColor, setPlayerColor] = useState(null);
 
   const router = useRouter();
 
@@ -29,7 +15,6 @@ const AddPlayers = () => {
   const handleColorChange = (value) => {
     setPlayerColor(value);
   };
-  console.log(playerColor);
 
   return (
     <div className='w-full flex flex-col justify-between items-center h-full space-y-6'>
@@ -40,7 +25,7 @@ const AddPlayers = () => {
               Player Information
             </h3>
             <p className='mt-1 max-w-2xl text-sm text-white/75'>
-              Set the player's display information here.
+              Set the player&apos;s display information here.
             </p>
           </div>
           <div className='space-y-6 sm:space-y-5'>

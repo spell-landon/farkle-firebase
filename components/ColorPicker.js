@@ -25,16 +25,7 @@ export default function ColorPicker({ onSelection }) {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
 
   useEffect(() => {
-    console.log(selectedColor);
-    // window.localStorage.setItem(
-    //   'addPlayerColor',
-    //   JSON.stringify(selectedColor)
-    // );
     onSelection(selectedColor);
-
-    // return () => {
-    //   window.localStorage.setItem('addPlayerColor', JSON.stringify(colors[0]));
-    // };
   }, [selectedColor]);
 
   return (
