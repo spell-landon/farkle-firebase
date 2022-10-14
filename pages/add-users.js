@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { usePlayersContext } from '../utils/playerReducer';
 
 const AddUsers = () => {
-  const [players, setPlayers] = usePlayersContext();
   const [newPlayer, setNewPlayer] = useState({});
 
   console.log(newPlayer);
