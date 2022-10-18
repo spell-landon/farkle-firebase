@@ -37,7 +37,7 @@ const Login = () => {
       const token = credential.accessToken;
       let photoURL = result.user.photoURL + '?height=500&access_token=' + token;
       await updateProfile(auth.currentUser, { photoURL: photoURL });
-      route.push('/dashboard');
+      route.push('/start-new-game');
     } catch (error) {
       console.log(error);
     }
@@ -45,7 +45,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
-      route.push('/dashboard');
+      route.push('/start-new-game');
     }
   }, [user]);
 

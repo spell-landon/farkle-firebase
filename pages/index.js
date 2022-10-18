@@ -39,15 +39,15 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <div className='flex flex-col justify-start items-center'>
-        <Image src='/assets/dice.png' alt='Dice' width={500} height={500} />
+      <div className='flex flex-col justify-between py-16 items-center gap-4'>
+        <Image src='/assets/dice.png' alt='Dice' width={200} height={200} />
         {/* <img src={`../assets/dice.png`} alt='main' className='h-40 w-40' /> */}
         <h1 className='text-3xl font-bold'>Farkle Scorekeeper</h1>
         <span className='mt-4 text-center '>
           Quick start without saving a game, or login to save games or start
           from a save point.
         </span>
-        <div className='flex flex-col gap-4 mt-auto w-full fixed bottom-20 px-4'>
+        <div className='flex flex-col gap-4 mt-auto w-full px-4 mt-8'>
           <Button onClick={startNewGame}>Quick Start</Button>
           <Button to={'/auth/login'}>Login</Button>
         </div>
