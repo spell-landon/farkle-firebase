@@ -1,9 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 
-export const Button = ({ to, color, children, ...props }) => {
+export const Button = ({ to, query, color, children, ...props }) => {
   return to ? (
-    <Link href={`${to}`}>
+    <Link
+      href={{
+        pathname: `${to}`,
+        query: query,
+      }}>
       <a
         className={`${
           color ? color : 'bg-indigo-600'

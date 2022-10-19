@@ -3,8 +3,8 @@ import { Button } from '../components/elements/Button';
 import { useRouter } from 'next/router';
 // import { database } from '../utils/firebase';
 
-const StartNewGame = ({ id }) => {
-  console.log(id);
+const StartNewGame = ({ gameId }) => {
+  console.log(gameId);
   // console.log(database);
   const router = useRouter();
   const navigate = (value) => {

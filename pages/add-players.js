@@ -35,6 +35,11 @@ const AddPlayers = () => {
   };
 
   const writeNewPlayer = (newPlayerObject) => {
+    if (!newPlayerObject.playerName || !newPlayerObject.playerColor) {
+      setErr(true);
+      alert('You must add player info');
+      return;
+    }
     console.log(newPlayerObject);
     const { playerName, playerColor } = newPlayerObject;
     set(ref(database, `game/players/${playerName}`), {
@@ -42,6 +47,7 @@ const AddPlayers = () => {
       playerColor: playerColor,
       score: 0,
     });
+    newPlayer.playerName = '';
   };
 
   const getPlayers = () => {
@@ -79,7 +85,9 @@ const AddPlayers = () => {
     const players = convertObjectToArray(activePlayers);
     console.log(players);
     if (players.length >= 2) {
-      setStartGameError(false);
+      setTimeout(() => {
+        setStartGameError(false);
+      }, 2000);
       navigate('/gameplay');
     } else {
       setStartGameError(true);

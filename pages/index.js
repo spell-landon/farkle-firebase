@@ -2,34 +2,47 @@ import Head from 'next/head';
 import { Button } from '../components/elements/Button';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { nanoid } from 'nanoid';
+import { database } from '../utils/firebase';
+import { ref, set, onValue, remove } from 'firebase/database';
 
 export default function Home() {
   const router = useRouter();
+  const nano = nanoid();
 
-  async function startNewGame() {
-    const totalPoints = 10000;
+  // async function startNewGame() {
+  //   const totalPoints = 10000;
 
-    const query = `mutation createGame($totalPoints: Int! ) {
-      createGame(data: { totalPoints: $totalPoints }) {
-        id
-        totalPoints
-      }
-    }`;
+  //   const query = `mutation createGame($totalPoints: Int! ) {
+  //     createGame(data: { totalPoints: $totalPoints }) {
+  //       id
+  //       totalPoints
+  //     }
+  //   }`;
 
-    await fetch(
-      'https://api-us-east-1.hygraph.com/v2/cl97rgpjn0snz01uka80u3s2z/master',
-      {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({ query, variables: { totalPoints } }),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .then(() => router.push('/start-new-game'));
-  }
+  //   await fetch(
+  //     'https://api-us-east-1.hygraph.com/v2/cl97rgpjn0snz01uka80u3s2z/master',
+  //     {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ query, variables: { totalPoints } }),
+  //     }
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data))
+  //     .then(() => router.push('/start-new-game'));
+  // }
+
+  const startNewGame = () => {
+    console.log(database);
+    console.log(nano);
+    set(ref(database, `game_${nano}`), {
+      players: null,
+    });
+    // router.push(`/start-new-game`);
+  };
 
   return (
     <div>
@@ -48,7 +61,12 @@ export default function Home() {
           from a save point.
         </span>
         <div className='flex flex-col gap-4 mt-auto w-full px-4 mt-8'>
-          <Button onClick={startNewGame}>Quick Start</Button>
+          <Button
+            onClick={startNewGame}
+            to={`/start-new-game`}
+            query={{ gameId: `game_${nano}` }}>
+            Quick Start
+          </Button>
           <Button to={'/auth/login'}>Login</Button>
         </div>
       </div>
